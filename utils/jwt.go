@@ -1,12 +1,13 @@
 package utils
 
 import (
+	"go-api/config"
 	"time"
 
 	"github.com/golang-jwt/jwt/v4"
 )
 
-var JwtKey = []byte("ff3f4036a1164d1ddbad5b3edf9022addb3e1961a54a922708a6c1ffc49e5489")
+var JwtKey = []byte(config.C.JWT.Secret)
 
 type Claims struct {
 	UserID uint `json:"user_id"`

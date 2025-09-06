@@ -1,9 +1,11 @@
 package main
 
 import (
+	"go-api/config"
 	"go-api/controllers"
 	"go-api/middleware"
 	"go-api/models"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -12,6 +14,10 @@ import (
 )
 
 func main() {
+	// 1. 初始化配置
+	if err := config.Init(); err != nil {
+		log.Fatalf("Failed to load config: %v", err)
+	}
 	// 初始化
 	db, err := gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
 	if err != nil {
