@@ -1,11 +1,11 @@
 app:
-    name: "My Gin App"
-    env: "development"
-    port: "8080"
-    log_level: "debug"
-    debug: true
+  name: "My Gin App"
+  env: "development"
+  port: "8080"
+  log_level: "debug"
+  debug: true
 
 jwt:
-  secret: "dev-jwt-secret-placeholder"  # 会被.env覆盖
+  secret: "dev-jwt-secret-placeholder" # 会被.env覆盖
   expire_hours: 24
   issuer: "my-gin-app-dev"
