@@ -52,5 +52,6 @@ func main() {
 
 	routers.ApiRoutersInst(router)
 
-	router.Run(":8888") // 监听并在 0.0.0.0:8081 上启动服务
+	port := config.C.App.Port
+	router.Run(":" + port) // 监听并在 0.0.0.0:8081 上启动服务
 }

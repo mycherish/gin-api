@@ -31,14 +31,14 @@ type AppConfig struct {
 }
 
 type DBConfig struct {
-	DbHost      string `mapstructure:"db_host"`
-	DbPort      string `mapstructure:"db_port"`
-	DbDatabase  string `mapstructure:"db_database"`
-	DbUsername  string `mapstructure:"db_username"`
-	DbPassword  string `mapstructure:"db_password"`
-	DbCharset   string `mapstructure:"db_charset"`
-	DbParseTime string `mapstructure:"db_parse_time"`
-	DbLoc       string `mapstructure:"db_loc"`
+	Host      string `mapstructure:"host"`
+	Port      string `mapstructure:"port"`
+	Database  string `mapstructure:"database"`
+	Username  string `mapstructure:"username"`
+	Password  string `mapstructure:"password"`
+	Charset   string `mapstructure:"charset"`
+	ParseTime string `mapstructure:"parse_time"`
+	Loc       string `mapstructure:"loc"`
 }
 
 var C Config
@@ -84,6 +84,7 @@ func overrideFromEnv() {
 	if env := os.Getenv("APP_ENV"); env != "" {
 		C.App.Env = env
 	}
+	C.App.Port = getEnv("APP_PORT", C.App.Port)
 
 	// JWT配置
 	if secret := os.Getenv("JWT_SECRET"); secret != "" {
@@ -91,14 +92,14 @@ func overrideFromEnv() {
 	}
 
 	// 数据库
-	C.DB.DbHost = getEnv("DB_HOST", C.DB.DbHost)
-	C.DB.DbPort = getEnv("DB_PORT", C.DB.DbPort)
-	C.DB.DbDatabase = getEnv("DB_DATABASE", C.DB.DbDatabase)
-	C.DB.DbUsername = getEnv("DB_USERNAME", C.DB.DbUsername)
-	C.DB.DbPassword = getEnv("DB_PASSWORD", C.DB.DbPassword)
-	C.DB.DbCharset = getEnv("DB_CHARSET", C.DB.DbCharset)
-	C.DB.DbParseTime = getEnv("DB_PARSE_TIME", C.DB.DbParseTime)
-	C.DB.DbLoc = getEnv("DB_LOC", C.DB.DbLoc)
+	C.DB.Host = getEnv("DB_HOST", C.DB.Host)
+	C.DB.Port = getEnv("DB_PORT", C.DB.Port)
+	C.DB.Database = getEnv("DB_DATABASE", C.DB.Database)
+	C.DB.Username = getEnv("DB_USERNAME", C.DB.Username)
+	C.DB.Password = getEnv("DB_PASSWORD", C.DB.Password)
+	C.DB.Charset = getEnv("DB_CHARSET", C.DB.Charset)
+	C.DB.ParseTime = getEnv("DB_PARSE_TIME", C.DB.ParseTime)
+	C.DB.Loc = getEnv("DB_LOC", C.DB.Loc)
 
 }
 
