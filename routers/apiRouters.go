@@ -8,6 +8,12 @@ import (
 
 func ApiRoutersInst(r *gin.Engine) {
 	apiRouter := r.Group("/api")
-	apiRouter.GET("/users", api.UserController{}.Index)
-	apiRouter.POST("/users/add", api.UserController{}.Add)
+
+	user := apiRouter.Group("/user")
+	user.GET("/", api.UserController{}.Index)
+	user.POST("/add", api.UserController{}.Add)
+
+	auth := apiRouter.Group("/auth")
+	authController := &api.AuthController{}
+	auth.POST("/register", authController.Register)
 }

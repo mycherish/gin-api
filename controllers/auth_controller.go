@@ -33,30 +33,31 @@ type LoginInput struct {
 }
 
 // Register registers a new user.
-func (ac *AuthController) Register(c *gin.Context) {
-	var input RegisterInput
-	// Bind the input data
-	if err := c.ShouldBindJSON(&input); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-	user := models.User{
-		Username: input.Username,
-		Email:    input.Email,
-	}
-	// Hash the password before saving
-	if err := user.HashPassword(input.Password); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to hash password"})
-		return
-	}
-	if err := ac.DB.Create(&user).Error; err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Username or email already exists"})
-		return
-	}
+// func (ac *AuthController) Register(c *gin.Context) {
+// 	var input RegisterInput
+// 	// Bind the input data
+// 	if err := c.ShouldBindJSON(&input); err != nil {
+// 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+// 		return
+// 	}
+// 	user := models.User{
+// 		Username: input.Username,
+// 		Email:    input.Email,
+// 	}
+// 	// Hash the password before saving
+// 	if err := user.HashPassword(input.Password); err != nil {
+// 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to hash password"})
+// 		return
+// 	}
+// 	if err := ac.DB.Create(&user).Error; err != nil {
+// 		c.JSON(http.StatusBadRequest, gin.H{"error": "Username or email already exists"})
+// 		return
+// 	}
 
-	c.JSON(http.StatusCreated, gin.H{"message": "Registration successful"})
-}
+// 	c.JSON(http.StatusCreated, gin.H{"message": "Registration successful"})
+// }
 
+// 登陆
 func (ac *AuthController) Login(c *gin.Context) {
 	var input LoginInput
 	// 绑定输入数据
