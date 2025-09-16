@@ -16,4 +16,5 @@ func ApiRoutersInst(r *gin.Engine) {
 	auth := apiRouter.Group("/auth")
 	authController := &api.AuthController{}
 	auth.POST("/register", authController.Register)
+	auth.POST("/login", authController.Login)
 }

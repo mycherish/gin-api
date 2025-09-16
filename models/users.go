@@ -24,3 +24,12 @@ func (user *Users) HashPassword(password string) error {
 	user.Password = string(bytes)
 	return nil
 }
+
+// 验证
+func (user *Users) CheckPassword(providedPassword string) error {
+	err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(providedPassword))
+	if err != nil {
+		return err
+	}
+	return nil
+}

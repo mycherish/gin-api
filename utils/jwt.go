@@ -33,6 +33,7 @@ func GenerateToken(userID uint) (string, error) {
 	return tokenString, nil
 }
 
+// 验证token
 func ValidateToken(tokenString string) (*Claims, error) {
 	claims := &Claims{}
 
